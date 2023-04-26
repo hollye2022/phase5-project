@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  count: MyString
+  user: one
+  habit: one
+
+two:
+  count: MyString
+  user: two
+  habit: two

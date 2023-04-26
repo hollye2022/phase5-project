@@ -1,3 +1,19 @@
+html {
+  background-color: rgb(188, 238, 217);
+}
+
+.form-center {
+  width:400px;
+  margin: 0 auto;
+  font-size: 30px;
+  color: blue;
+  display: flex;
+}
+
+.home{
+  text-align: center;
+}
+
 .App {
   text-align: center;
 }

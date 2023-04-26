@@ -28,3 +28,9 @@ group :development do
   # gem "spring"
 end
 
+
+gem 'active_model_serializers'
+
+gem "bcrypt", "~> 3.1"
+
+gem "byebug", "~> 11.1"
