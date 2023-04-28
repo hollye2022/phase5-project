@@ -9,4 +9,4 @@ cp -a client/build/. public/
 # backend build commands
 bundle install
 #remove db:seed once you seeded it once
- bundle exec rake db:migrate db:seed ()
+ bundle exec rake db:migrate db:seed
