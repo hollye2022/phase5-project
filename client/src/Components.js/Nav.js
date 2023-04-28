@@ -38,9 +38,9 @@ function Nav({user, updateUser}) {
         <button>My Habits</button>
       </NavLink>} 
 
-      { user && <NavLink to="/Notes">
+      {/* { user && <NavLink to="/Notes">
         <button>Notes</button>
-      </NavLink> }
+      </NavLink> } */}
 
       {/* {user? <NavLink to="/logout">
         <button onClick={logout} >log out</button>

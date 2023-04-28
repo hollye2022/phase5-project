@@ -13,19 +13,14 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/me", to: "users#me"
 
-  # Habits API endpoints
-  # post "/habits", to: "habits#create"
-  # delete "/habits", to: "habits#destroy"
-
-  # Streaks API endpoints
-  # delete '/streaks/:id', to: 'streaks#destroy'
-
-  # Increment the streak count
-  # example: /streaks/123/increment_count
   resources :streaks do
     member do
       post 'increment_count'
     end
+  end
+
+  resources :users, only:[:show] do
+    resources :notes, only:[:show, :index]
   end
 
 end

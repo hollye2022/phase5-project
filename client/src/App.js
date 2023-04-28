@@ -9,7 +9,7 @@ import Home from "./Components.js/Home";
 import Nav from "./Components.js/Nav";
 import Habits from "./Components.js/Habits";
 import UserPage from './Components.js/UserPage';
-import Notes from './Components.js/Notes';
+// import Notes from './Components.js/Notes';
 import Login from './Components.js/Login';
 import Signup from './Components.js/Signup';
 
@@ -101,9 +101,9 @@ function updateHabits(x){
         <Home />
         </Route>
 
-        <Route path="/Notes">
+        {/* <Route path="/Notes">
           <Notes />
-        </Route>
+        </Route> */}
        
         <Route path="/habits">
           <Habits habits={habits} user={user} updateHabits={updateHabits} fetchHabits={fetchHabits} />

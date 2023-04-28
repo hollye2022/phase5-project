@@ -11,7 +11,7 @@ function UserPage({fetchHabits}) {
   const [myUser, setMyUser] = useState()
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState(false)
-  // const [count, setCount] = useState(0)
+  const [notes, setNotes] = useState("")
 
   const params = useParams()
   const {id} = params
@@ -41,7 +41,7 @@ function UserPage({fetchHabits}) {
     fetch(`/streaks/${streak_id}/increment_count`,{
       method:"POST",
       headers:{
-        "Content_Type":"application/json"
+        "Content-Type":"application/json"
       }
     }).then(res => {
       if(res.ok){
@@ -70,6 +70,41 @@ function UserPage({fetchHabits}) {
   const sortedMyStreaks = myUser.streaks.sort((a,b) => a.habit.name.localeCompare(b.habit.name));
   console.log("My streaks:")
   console.log(sortedMyStreaks);
+
+  function handleChange(e){
+
+    setNotes(e.target.value)
+  }
+
+
+  function updateNotes(){
+    fetch(`/users/${myUser.id}/notes`)
+      .then(res=>{
+        if(res.ok){
+          res.json().then(setNotes)
+        } else{
+          res.json().then(data=>setErrors(data.error))
+        }  
+    })
+  }
+
+  function handleClick(){
+    fetch("/notes",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({user_id:myUser.id,content:notes})
+    }).then(res=>{
+      if(res.ok){
+        fetchUser()
+        setNotes("")
+        // setMyUser(newUser)
+      }else{
+        res.json().then(data=>setErrors(data.error))
+      }
+    })
+  }
 
   return (
     <div>
@@ -114,8 +149,11 @@ function UserPage({fetchHabits}) {
       <ul>
       {/* {myUser.streaks.map(streak => <li>{streak.habit.name}:{streak.count} times</li> )} */}
       </ul>
-      <h3>Notes</h3>
-      {myUser.notes.map(note => <li>Today's thoughts: {note.content}</li>)}
+      <h3>Notes</h3> 
+      <input type="text" placeholder='Tell me about your day!' style={{height:"80px", fontSize:"24px"}} name="notes" value= {notes} onChange={handleChange} ></input>
+      <Fab style={{backgroundColor: 'pink'}} onClick={() => handleClick(myUser.id)}  ><AddIcon /></Fab>
+      {myUser.notes.map(note => <li>{note.content}</li>)}
+      
        
     </div>
   )
