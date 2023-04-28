@@ -20,9 +20,8 @@ function Login({updateUser}) {
 
   function handleSubmit(e){
     e.preventDefault()
-    fetch(`/login`,{
+    fetch("/login",{
       method:"POST",
-      // mode: "no-cors",
       headers:{
         "Content-Type":"application/json"
       },
@@ -56,8 +55,8 @@ function Login({updateUser}) {
      <input type="submit" value="Log in" style={{fontSize:"20px",backgroundColor:"yellow",height:"40px",marginTop:"10px",display:"flex"}}/>
     </form>
 
-    {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
-    {errors?<div>{errors}</div>:null}
+    {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null}
+    {/* {errors?<div>{errors}</div>:null} */}
     </div>
   )
 }
